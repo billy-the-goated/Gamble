@@ -26,8 +26,8 @@
     <section class="checkout-card" id="checkout-card">
       <div class="checkout-security">
         <span class="security-seal" aria-hidden="true">✦</span>
-        <span><strong>THE LANTERN CHIP COUNTER</strong><small>LOCAL DEMO CHECKOUT · NO PAYMENT PROCESSOR</small></span>
-        <span class="lock-mark" aria-hidden="true">♙</span>
+        <span><strong>THE LANTERN CHIP COUNTER</strong><small>SIMULATED CHECKOUT · NO REAL PAYMENT PROCESSOR</small></span>
+        <span class="lock-mark" aria-hidden="true">🔒</span>
       </div>
 
       <div class="checkout-content" id="checkout-content">
@@ -54,13 +54,22 @@
           </button>
         </div>
 
-        <div class="checkout-step"><span>02</span> REVIEW YOUR DEMO ORDER</div>
+        <div class="checkout-step"><span>02</span> DEMO PAYMENT METHOD</div>
+        <div class="demo-payment-method">
+          <span class="demo-card-icon" aria-hidden="true">✦</span>
+          <span class="demo-card-copy"><strong>Lantern Test Card</strong><small>SIMULATED CARD · NO REAL CARD NUMBER</small></span>
+          <span class="demo-card-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;0424</span>
+          <span class="demo-card-tag">DEMO</span>
+        </div>
+
+        <div class="checkout-step"><span>03</span> REVIEW AND AUTHORIZE</div>
         <div class="order-summary" id="order-summary">
           <span>Select a bundle above</span><strong>—</strong>
         </div>
-        <label class="demo-consent"><input id="demo-consent" type="checkbox"> <span>I understand this is a pretend purchase. No money is taken and no payment details are requested.</span></label>
-        <button class="btn place-order" id="place-order" type="button" disabled>Confirm demo purchase</button>
-        <p class="checkout-disclosure"><span>✦</span> Simulated prices are for atmosphere only. This static demo never contacts a payment service, asks for financial details, or charges real money. <span>✦</span></p>
+        <div class="checkout-total" id="checkout-total"><span>DEMO TOTAL</span><strong>—</strong></div>
+        <label class="demo-consent"><input id="demo-consent" type="checkbox"> <span>I understand this uses a fictional test card. No money is taken and no real payment method or details are involved.</span></label>
+        <button class="btn place-order" id="place-order" type="button" disabled>Authorize demo order</button>
+        <p class="checkout-disclosure"><span>✦</span> Demo confirmations take a few seconds and can randomly fail (12% demo chance). The displayed test card and authorization are fictional; no payment service, financial details, or real money are involved. <span>✦</span></p>
       </div>
 
       <section class="purchase-result" id="purchase-result" aria-live="polite" hidden>
@@ -70,22 +79,49 @@
         <p id="purchase-confirmation"></p>
         <div class="receipt">
           <span>DEMO ORDER <strong id="order-number"></strong></span>
-          <span>PAYMENT <strong>NO CHARGE · SIMULATED</strong></span>
+          <span>BUNDLE <strong id="receipt-bundle"></strong></span>
+          <span>SIMULATED TOTAL <strong id="receipt-total"></strong></span>
+          <span>AUTHORIZATION <strong id="authorization-code"></strong></span>
+          <span>CONFIRMED <strong id="confirmation-time"></strong></span>
+          <span>PAYMENT <strong>TEST CARD · NO CHARGE</strong></span>
           <span>NEW CHIP BALANCE <strong id="receipt-balance"></strong></span>
         </div>
         <a class="btn return-to-casino" href="index.html">Return to the casino</a>
       </section>
 
+      <section class="purchase-failure" id="purchase-failure" aria-live="polite" hidden>
+        <div class="failure-seal" aria-hidden="true">!</div>
+        <p class="section-kicker">DEMO ORDER NOT COMPLETED</p>
+        <h2>A little hiccup.</h2>
+        <p id="failure-message"></p>
+        <div class="receipt">
+          <span>ATTEMPT <strong id="attempt-number"></strong></span>
+          <span>BUNDLE <strong id="failed-bundle"></strong></span>
+          <span>DEMO TOTAL <strong id="failed-total"></strong></span>
+          <span>TIME <strong id="attempt-time"></strong></span>
+          <span>AUTHORIZATION <strong>DECLINED · SIMULATED</strong></span>
+          <span>PAYMENT <strong>TEST CARD · NO CHARGE</strong></span>
+          <span>CHIP BALANCE <strong id="failure-balance"></strong></span>
+        </div>
+        <button class="btn retry-purchase" id="retry-purchase" type="button">Try the demo again</button>
+        <button class="btn btn-secondary return-to-order" id="return-to-order" type="button">Choose a different bundle</button>
+      </section>
+
       <div class="checkout-processing" id="checkout-processing" aria-live="polite" hidden>
         <span class="processing-spinner" aria-hidden="true"></span>
-        <p class="section-kicker">ONE MOMENT</p>
-        <h2>Counting your chips…</h2>
-        <p>Completing your simulated order locally.</p>
+        <p class="section-kicker">DEMO CLEARING HOUSE</p>
+        <h2 id="processing-title">Reviewing your order…</h2>
+        <p id="processing-description">Please keep this window open while the demo transaction runs.</p>
+        <ol class="processing-steps" aria-label="Simulated transaction progress">
+          <li id="processing-step-order" class="current"><span>01</span><span>Order details checked</span><b>…</b></li>
+          <li id="processing-step-auth"><span>02</span><span>Demo authorization requested</span><b>Waiting</b></li>
+          <li id="processing-step-ledger"><span>03</span><span>House ledger updated</span><b>Waiting</b></li>
+        </ol>
       </div>
     </section>
     <p class="fine-print">Play chips are pretend, stored only in your browser, and have no cash value.</p>
   </main>
-  <footer class="game-footer"><a href="blackjack.html">Blackjack</a><span>✦</span><a href="index.html">Casino entrance</a><span>✦</span><a href="roulette.html">Roulette</a></footer>
+  <footer class="game-footer"><a href="blackjack.html">Blackjack</a><span>✦</span><a href="index.html">Casino entrance</a><span>✦</span><a href="slots.html">The Slots</a></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="casino.js"></script>
   <script src="buy-chips.js"></script>

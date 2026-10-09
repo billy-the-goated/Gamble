@@ -33,6 +33,22 @@
     return shoe.pop();
   }
 
+  function drawForDealer(cards) {
+    if (shoe.length === 0) shoe = makeShoe();
+    const weights = shoe.map((card) => total([...cards, card]) === 21 ? 0.2 : 1);
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    let target = Math.random() * totalWeight;
+    let selectedIndex = shoe.length - 1;
+    for (let index = 0; index < weights.length; index++) {
+      target -= weights[index];
+      if (target < 0) {
+        selectedIndex = index;
+        break;
+      }
+    }
+    return shoe.splice(selectedIndex, 1)[0];
+  }
+
   function cardValue(card) {
     if (card.rank === "A") return 11;
     if (["J", "Q", "K"].includes(card.rank)) return 10;
@@ -113,17 +129,18 @@
     const wager = Lantern.validWager($("blackjack-wager"));
     if (wager === null) return;
     Lantern.setBalance(Lantern.balance - wager);
-    dealer = [draw(), draw()];
+    const dealerUpcard = draw();
+    dealer = [dealerUpcard, drawForDealer([dealerUpcard])];
     hands = [{ cards: [draw(), draw()], wager, status: "playing", natural: false, splitAces: false }];
     hands[0].natural = total(hands[0].cards) === 21;
     roundActive = true;
     splitRound = false;
     activeHand = 0;
     canDouble = !hands[0].natural;
-    canSplit = !hands[0].natural && cardValue(hands[0].cards[0]) === cardValue(hands[0].cards[1]);
+    canSplit = !hands[0].natural && hands[0].cards[0].rank === hands[0].cards[1].rank;
     $("dealer-status").textContent = "";
     $("blackjack-message").textContent = "Your move: hit, stand, double, or split your pair.";
-    if (hands[0].natural) {
+    if (hands[0].natural || (dealer.length === 2 && total(dealer) === 21)) {
       hands[0].status = "stood";
       dealerTurn();
     } else {
@@ -219,11 +236,15 @@
     canDouble = false;
     canSplit = false;
     const dealerNatural = dealer.length === 2 && total(dealer) === 21;
+    if (hands.every((hand) => total(hand.cards) > 21)) {
+      finish();
+      return;
+    }
     const millionToOneStreak = !dealerNatural && Math.random() < 1 / 1_000_000;
     if (millionToOneStreak) {
       dealer.push({ rank: "10", suit: "♠" }, { rank: "10", suit: "♥" });
     } else if (!dealerNatural) {
-      while (total(dealer) < 17) dealer.push(draw());
+      while (total(dealer) < 17) dealer.push(drawForDealer(dealer));
     }
     finish(millionToOneStreak);
   }
@@ -245,7 +266,7 @@
       }
       if (dealerNatural) return;
       if (playerNatural) {
-        payout += hand.wager * 2.5;
+        payout += hand.wager * 3;
         winningHands++;
       } else if (dealerBust || playerTotal > dealerTotal) {
         payout += hand.wager * 2;
@@ -265,7 +286,8 @@
 
     const summaries = hands.map((hand, index) => {
       const playerTotal = total(hand.cards);
-      const result = playerTotal > 21 ? "bust" : dealerNatural && !hand.natural ? "dealer blackjack" : dealerBust || playerTotal > dealerTotal ? "win" : playerTotal === dealerTotal ? "push" : "loss";
+      const playerNatural = hand.natural && !splitRound;
+      const result = playerTotal > 21 ? "Bust" : playerNatural && dealerNatural ? "Push" : dealerNatural ? "Dealer blackjack" : playerNatural ? "Natural blackjack (2:1)" : dealerBust || playerTotal > dealerTotal ? "Win" : playerTotal === dealerTotal ? "Push" : "Loss";
       return hands.length > 1 ? `Hand ${index + 1}: ${result}` : result;
     });
     let message = summaries.join(" · ");
@@ -273,7 +295,7 @@
       message = `The impossible happens: the dealer pulls two 10s in a row${dealerBust ? " and busts" : ""}! ${message}.`;
     }
     if (payout > 0) message += ` $${Lantern.formatChips(payout)} returned.`;
-    $("blackjack-message").textContent = message.charAt(0).toUpperCase() + message.slice(1);
+    $("blackjack-message").textContent = message;
     $("dealer-status").textContent = dealerBust ? "Bust" : dealerNatural ? "Blackjack" : dealerTotal === 21 ? "Twenty-one" : "";
     renderHands(true);
     updateControls();
