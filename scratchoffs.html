@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Try a free-play Golden Ticket scratch-off at The Lucky Lantern.">
+  <title>Golden Tickets — The Lucky Lantern</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body class="game-page scratch-page">
+  <header class="game-topbar">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> THE ENTRANCE</a>
+    <a class="game-wordmark" href="index.html">✦ THE LUCKY LANTERN ✦</a>
+    <div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div>
+  </header>
+  <main class="game-main scratch-main">
+    <div class="room-heading">
+      <p class="section-kicker">ROOM 02 · INSTANT FORTUNE</p>
+      <h1>Golden Tickets</h1>
+      <p>Three little symbols. One very big maybe.</p>
+    </div>
+    <section class="scratch-booth">
+      <div class="ticket-spotlight" aria-hidden="true"><span>✦</span><span>✦</span></div>
+      <p class="ticket-caption">THE LUCKY LANTERN PRESENTS</p>
+      <h2>THE GOLDEN TICKET</h2>
+      <p class="ticket-subcaption">A little scratch of fortune</p>
+      <div class="scratch-ticket" id="scratch-ticket">
+        <div class="ticket-result" id="ticket-result"></div>
+        <div class="ticket-placeholder" id="ticket-placeholder"><strong>✦ &nbsp; LUCKY &nbsp; ✦</strong><span>RUB TO REVEAL YOUR FATE</span></div>
+        <canvas id="scratch-canvas" aria-label="Scratch this ticket to reveal your symbols"></canvas>
+      </div>
+      <p class="game-message" id="scratch-message" aria-live="polite">A fresh ticket awaits. Ten chips to play.</p>
+      <div class="button-row">
+        <button class="btn" id="buy-ticket" type="button">Buy ticket · 10 chips</button>
+        <button class="btn btn-secondary" id="reveal-ticket" type="button" disabled>Reveal ticket</button>
+      </div>
+      <div class="prize-list">
+        <span><b>⭐⭐⭐</b> Stars · 500 chips</span>
+        <span><b>🏮🏮🏮</b> Lanterns · 120 chips</span>
+        <span><b>🍒🍒🍒</b> Cherries · 50 chips</span>
+      </div>
+    </section>
+    <p class="fine-print">Each ticket has a 35% chance of a prize · All chips are pretend.</p>
+  </main>
+  <footer class="game-footer"><a href="blackjack.html">Blackjack</a><span>✦</span><a href="roulette.html">Roulette</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="casino.js"></script>
+  <script src="scratchoffs.js"></script>
+</body>
+</html>

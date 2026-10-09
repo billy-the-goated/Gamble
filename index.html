@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Step through the doors of The Lucky Lantern, a free-to-play old-school casino.">
+  <title>The Lucky Lantern — Step Inside</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body class="lobby-page">
+  <div class="lobby-lights" aria-hidden="true"></div>
+  <header class="lobby-header">
+    <a class="wordmark" href="index.html"><span class="wordmark-star">✦</span> The Lucky Lantern <span class="wordmark-star">✦</span></a>
+    <div class="balance-plaque"><span class="plaque-label">Your house chips</span><strong class="balance" id="balance">$1,000</strong></div>
+  </header>
+
+  <main class="entrance">
+    <div class="entrance-ornament" aria-hidden="true"><span>✦</span><i></i><span>✦</span></div>
+    <p class="entrance-kicker"><span class="live-dot"></span> Open late · open to everyone · play for fun</p>
+    <div class="grand-sign">
+      <span class="sign-small">A little parlour of chance</span>
+      <h1>THE <em>LUCKY</em><br>LANTERN</h1>
+      <span class="sign-slogan">Fortune favours the curious</span>
+    </div>
+    <p class="entrance-invitation">The velvet rope is lifted. Pick a room, take your seat, and let the evening unfold.</p>
+
+    <nav class="game-doors" aria-label="Choose your game">
+      <a class="door door-cards" href="blackjack.html">
+        <span class="door-number">ROOM 01</span>
+        <span class="door-icon" aria-hidden="true"><span class="door-card card-one">A<span>♠</span></span><span class="door-card card-two">K<span>♥</span></span></span>
+        <span class="door-title">Blackjack</span>
+        <span class="door-description">A green felt table. A patient dealer. One more hand?</span>
+        <span class="door-enter">ENTER THE TABLE <b>↗</b></span>
+      </a>
+      <a class="door door-scratch" href="scratchoffs.html">
+        <span class="door-number">ROOM 02</span>
+        <span class="door-icon scratch-icon" aria-hidden="true">✦</span>
+        <span class="door-title">Golden Tickets</span>
+        <span class="door-description">Scratch away the mystery. Three matching symbols win.</span>
+        <span class="door-enter">TRY YOUR LUCK <b>↗</b></span>
+      </a>
+      <a class="door door-roulette" href="roulette.html">
+        <span class="door-number">ROOM 03</span>
+        <span class="door-icon wheel-icon" aria-hidden="true"><span>0</span></span>
+        <span class="door-title">Roulette</span>
+        <span class="door-description">Red, black, or a number. The wheel has the last word.</span>
+        <span class="door-enter">SPIN THE WHEEL <b>↗</b></span>
+      </a>
+    </nav>
+
+    <div class="house-rules"><span>✧</span><p>Just for the thrill of it. Chips are pretend, winnings stay in your browser, and the drinks are on the house.</p><span>✧</span></div>
+  </main>
+  <footer class="lobby-footer"><span>EST. AFTER DARK</span><span>THE LUCKY LANTERN</span><span>NO REAL MONEY · JUST GOOD FORTUNE</span></footer>
+  <script src="casino.js"></script>
+</body>
+</html>

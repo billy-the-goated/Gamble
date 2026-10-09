@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Take a spin on the free-play roulette wheel at The Lucky Lantern.">
+  <title>Roulette — The Lucky Lantern</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body class="game-page roulette-page">
+  <header class="game-topbar">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> THE ENTRANCE</a>
+    <a class="game-wordmark" href="index.html">✦ THE LUCKY LANTERN ✦</a>
+    <div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div>
+  </header>
+  <main class="game-main">
+    <div class="room-heading">
+      <p class="section-kicker">ROOM 03 · THE WHEEL ROOM</p>
+      <h1>Roulette</h1>
+      <p>Pick your hunch. Hear the ball fall.</p>
+    </div>
+    <section class="roulette-room">
+      <div class="roulette-wheel-wrap">
+        <div class="wheel-pointer" aria-hidden="true">▼</div>
+        <div class="wheel" id="roulette-wheel" aria-label="Roulette wheel">
+          <div class="wheel-ring"><span id="wheel-number">✦</span></div>
+        </div>
+        <div class="wheel-caption">EUROPEAN · 0–36</div>
+      </div>
+      <div class="roulette-controls">
+        <label class="select-label" for="roulette-bet">The house invites you to bet on</label>
+        <select id="roulette-bet">
+          <option value="red">Red · pays 1:1</option>
+          <option value="black">Black · pays 1:1</option>
+          <option value="even">Even · pays 1:1</option>
+          <option value="odd">Odd · pays 1:1</option>
+          <option value="number">A single number · pays 35:1</option>
+        </select>
+        <label class="select-label number-label" for="roulette-number" id="number-label" hidden>Your lucky number</label>
+        <input class="wager-input number-input" id="roulette-number" type="number" min="0" max="36" value="17" aria-label="Your roulette number" hidden>
+        <div class="roulette-wager">
+          <label class="select-label" for="roulette-wager">Your wager</label>
+          <input class="wager-input" id="roulette-wager" type="number" min="1" step="1" value="25" inputmode="numeric" aria-label="Roulette wager">
+          <span class="control-label">chips</span>
+        </div>
+        <button class="btn spin-button" id="spin-button" type="button">✦ &nbsp; Spin the wheel &nbsp; ✦</button>
+        <p class="roulette-message" id="roulette-message" aria-live="polite">The wheel is waiting for your hunch.</p>
+      </div>
+    </section>
+    <p class="fine-print">Single-zero European wheel · 0 is green · All chips are pretend.</p>
+  </main>
+  <footer class="game-footer"><a href="blackjack.html">Blackjack</a><span>✦</span><a href="scratchoffs.html">Golden Tickets</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="casino.js"></script>
+  <script src="roulette.js"></script>
+</body>
+</html>

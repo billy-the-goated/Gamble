@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Play a hand of free blackjack at The Lucky Lantern.">
+  <title>Blackjack — The Lucky Lantern</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body class="game-page blackjack-page">
+  <header class="game-topbar">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> THE ENTRANCE</a>
+    <a class="game-wordmark" href="index.html">✦ THE LUCKY LANTERN ✦</a>
+    <div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div>
+  </header>
+  <main class="game-main">
+    <div class="room-heading">
+      <p class="section-kicker">ROOM 01 · THE GREEN FELT</p>
+      <h1>Blackjack</h1>
+      <p>Keep your nerve. Beat the house to 21.</p>
+    </div>
+    <section class="table">
+      <p class="seat-label">✦ &nbsp; THE HOUSE &nbsp; ✦</p>
+      <div class="hands">
+        <div class="hand">
+          <p class="hand-title">Dealer <span id="dealer-total"></span></p>
+          <div class="cards" id="dealer-cards" aria-label="Dealer's cards"></div>
+          <p class="hand-total" id="dealer-status" aria-live="polite"></p>
+        </div>
+        <div class="hand">
+          <p class="hand-title">Your hand <span id="player-total"></span></p>
+          <div class="cards" id="player-cards" aria-label="Your cards"></div>
+          <p class="hand-total" id="player-status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="table-divider"></div>
+      <div class="table-controls">
+        <div class="wager-row">
+          <label class="control-label" for="blackjack-wager">Your wager</label>
+          <input class="wager-input" id="blackjack-wager" type="number" min="1" step="1" value="25" inputmode="numeric">
+          <span class="control-label">chips</span>
+        </div>
+        <div class="chip-row" aria-label="Add chips to your wager">
+          <button class="chip" type="button" data-add="5" aria-label="Add 5 chips">$5</button>
+          <button class="chip" type="button" data-add="25" aria-label="Add 25 chips">$25</button>
+          <button class="chip" type="button" data-add="100" aria-label="Add 100 chips">$100</button>
+          <button class="chip" type="button" data-add="500" aria-label="Add 500 chips">$500</button>
+        </div>
+        <div class="button-row">
+          <button class="btn" id="deal-button" type="button">Deal cards</button>
+          <button class="btn btn-secondary" id="hit-button" type="button" disabled>Hit</button>
+          <button class="btn btn-secondary" id="stand-button" type="button" disabled>Stand</button>
+          <button class="btn btn-secondary" id="double-button" type="button" disabled>Double</button>
+        </div>
+        <p class="game-message" id="blackjack-message" aria-live="polite">Place your wager and let the cards fall.</p>
+      </div>
+    </section>
+    <p class="fine-print">Dealer stands on 17 · Blackjack pays 3:2 · Aces count as 1 or 11 · All chips are pretend.</p>
+  </main>
+  <footer class="game-footer"><a href="scratchoffs.html">Golden Tickets</a><span>✦</span><a href="roulette.html">Roulette</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="casino.js"></script>
+  <script src="blackjack.js"></script>
+</body>
+</html>
