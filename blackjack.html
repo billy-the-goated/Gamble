@@ -12,7 +12,7 @@
   <header class="game-topbar">
     <a class="back-link" href="index.html"><span aria-hidden="true">←</span> THE ENTRANCE</a>
     <a class="game-wordmark" href="index.html">✦ THE LUCKY LANTERN ✦</a>
-    <div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div>
+    <div class="wallet-actions"><a class="buy-chips-link" href="buy-chips.html">＋ Buy chips</a><div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div></div>
   </header>
   <main class="game-main">
     <div class="room-heading">
@@ -28,10 +28,12 @@
           <div class="cards" id="dealer-cards" aria-label="Dealer's cards"></div>
           <p class="hand-total" id="dealer-status" aria-live="polite"></p>
         </div>
-        <div class="hand">
-          <p class="hand-title">Your hand <span id="player-total"></span></p>
-          <div class="cards" id="player-cards" aria-label="Your cards"></div>
-          <p class="hand-total" id="player-status" aria-live="polite"></p>
+        <div class="player-hands" id="player-hands" aria-live="polite">
+          <div class="hand">
+            <p class="hand-title">Your hand <span>· —</span></p>
+            <div class="cards" aria-label="Your cards"></div>
+            <p class="hand-total"></p>
+          </div>
         </div>
       </div>
       <div class="table-divider"></div>
@@ -52,11 +54,12 @@
           <button class="btn btn-secondary" id="hit-button" type="button" disabled>Hit</button>
           <button class="btn btn-secondary" id="stand-button" type="button" disabled>Stand</button>
           <button class="btn btn-secondary" id="double-button" type="button" disabled>Double</button>
+          <button class="btn btn-secondary" id="split-button" type="button" disabled>Split</button>
         </div>
         <p class="game-message" id="blackjack-message" aria-live="polite">Place your wager and let the cards fall.</p>
       </div>
     </section>
-    <p class="fine-print">Dealer stands on 17 · Blackjack pays 3:2 · Aces count as 1 or 11 · All chips are pretend.</p>
+    <p class="fine-print">Dealer stands on 17 · Blackjack pays 3:2 · Split pairs for an equal wager · Aces count as 1 or 11 · All chips are pretend.</p>
   </main>
   <footer class="game-footer"><a href="scratchoffs.html">Golden Tickets</a><span>✦</span><a href="roulette.html">Roulette</a></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Top up your Lucky Lantern play chips with a simulated purchase. No real payment.">
+  <title>Chip Counter — The Lucky Lantern</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body class="game-page checkout-page">
+  <header class="game-topbar">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> THE ENTRANCE</a>
+    <a class="game-wordmark" href="index.html">✦ THE LUCKY LANTERN ✦</a>
+    <div class="wallet-actions">
+      <a class="buy-chips-link" href="index.html">Back to the casino</a>
+      <div class="balance-plaque"><span class="plaque-label">Your chips</span><strong class="balance" id="balance">$1,000</strong></div>
+    </div>
+  </header>
+  <main class="game-main checkout-main">
+    <div class="room-heading">
+      <p class="section-kicker">THE CHIP COUNTER · DEMO CHECKOUT</p>
+      <h1>Top up your purse</h1>
+      <p>Pick a bundle. We’ll make it feel official.</p>
+    </div>
+    <section class="checkout-card" id="checkout-card">
+      <div class="checkout-security">
+        <span class="security-seal" aria-hidden="true">✦</span>
+        <span><strong>THE LANTERN CHIP COUNTER</strong><small>LOCAL DEMO CHECKOUT · NO PAYMENT PROCESSOR</small></span>
+        <span class="lock-mark" aria-hidden="true">♙</span>
+      </div>
+
+      <div class="checkout-content" id="checkout-content">
+        <div class="checkout-step"><span>01</span> CHOOSE YOUR CHIP BUNDLE</div>
+        <div class="bundle-list" role="group" aria-label="Choose a simulated chip bundle">
+          <button class="bundle" type="button" data-bundle="pocket" aria-pressed="false">
+            <span class="bundle-radio" aria-hidden="true"></span>
+            <span class="bundle-copy"><strong>Pocketful</strong><small>For a quick turn at the tables</small></span>
+            <span class="bundle-amount">2,500 <small>CHIPS</small></span>
+            <span class="bundle-price">€1.99 <small>SIMULATED</small></span>
+          </button>
+          <button class="bundle featured" type="button" data-bundle="evening" aria-pressed="false">
+            <span class="bundle-radio" aria-hidden="true"></span>
+            <span class="bundle-copy"><strong>Long Evening</strong><small>House favourite · 500 bonus chips</small></span>
+            <span class="bundle-amount">7,500 <small>CHIPS</small></span>
+            <span class="bundle-price">€4.99 <small>SIMULATED</small></span>
+            <span class="bundle-ribbon">POPULAR</span>
+          </button>
+          <button class="bundle" type="button" data-bundle="highroller" aria-pressed="false">
+            <span class="bundle-radio" aria-hidden="true"></span>
+            <span class="bundle-copy"><strong>High Roller</strong><small>Make a whole night of it</small></span>
+            <span class="bundle-amount">18,000 <small>CHIPS</small></span>
+            <span class="bundle-price">€9.99 <small>SIMULATED</small></span>
+          </button>
+        </div>
+
+        <div class="checkout-step"><span>02</span> REVIEW YOUR DEMO ORDER</div>
+        <div class="order-summary" id="order-summary">
+          <span>Select a bundle above</span><strong>—</strong>
+        </div>
+        <label class="demo-consent"><input id="demo-consent" type="checkbox"> <span>I understand this is a pretend purchase. No money is taken and no payment details are requested.</span></label>
+        <button class="btn place-order" id="place-order" type="button" disabled>Confirm demo purchase</button>
+        <p class="checkout-disclosure"><span>✦</span> Simulated prices are for atmosphere only. This static demo never contacts a payment service, asks for financial details, or charges real money. <span>✦</span></p>
+      </div>
+
+      <section class="purchase-result" id="purchase-result" aria-live="polite" hidden>
+        <div class="success-seal" aria-hidden="true">✓</div>
+        <p class="section-kicker">ORDER APPROVED · DEMO ONLY</p>
+        <h2>Chips, delivered.</h2>
+        <p id="purchase-confirmation"></p>
+        <div class="receipt">
+          <span>DEMO ORDER <strong id="order-number"></strong></span>
+          <span>PAYMENT <strong>NO CHARGE · SIMULATED</strong></span>
+          <span>NEW CHIP BALANCE <strong id="receipt-balance"></strong></span>
+        </div>
+        <a class="btn return-to-casino" href="index.html">Return to the casino</a>
+      </section>
+
+      <div class="checkout-processing" id="checkout-processing" aria-live="polite" hidden>
+        <span class="processing-spinner" aria-hidden="true"></span>
+        <p class="section-kicker">ONE MOMENT</p>
+        <h2>Counting your chips…</h2>
+        <p>Completing your simulated order locally.</p>
+      </div>
+    </section>
+    <p class="fine-print">Play chips are pretend, stored only in your browser, and have no cash value.</p>
+  </main>
+  <footer class="game-footer"><a href="blackjack.html">Blackjack</a><span>✦</span><a href="index.html">Casino entrance</a><span>✦</span><a href="roulette.html">Roulette</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="casino.js"></script>
+  <script src="buy-chips.js"></script>
+</body>
+</html>

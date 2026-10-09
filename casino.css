@@ -366,7 +366,7 @@ a { color: inherit; }
 .roulette-wheel-wrap { position: relative; display: flex; align-items: center; flex-direction: column; }
 .wheel-pointer { position: absolute; top: -13px; z-index: 2; color: var(--gold-light); font-size: 21px; filter: drop-shadow(0 2px 2px #100d0a); }
 .wheel { width: clamp(205px, 29vw, 265px); aspect-ratio: 1; display: grid; place-items: center; border: 6px ridge #c9a654; border-radius: 50%; background: repeating-conic-gradient(from -4.86deg, #aa3031 0deg 9.73deg, #201d17 9.73deg 19.46deg); box-shadow: 0 0 0 7px #211c14, 0 0 0 8px rgba(237,198,111,.5), 0 12px 27px rgba(0,0,0,.44), inset 0 0 0 14px #17140f; transition: transform 1.2s cubic-bezier(.12,.74,.14,1); }
-.wheel-ring { width: 37%; height: 37%; display: grid; place-items: center; border: 4px double #d8b958; border-radius: 50%; background: radial-gradient(circle, #1c4d3c, #102d23); box-shadow: 0 0 15px rgba(237,198,111,.3); transform: rotate(calc(-1 * var(--wheel-rotation, 0deg))); }
+.wheel-ring { width: 37%; height: 37%; display: grid; place-items: center; border: 4px double #d8b958; border-radius: 50%; background: radial-gradient(circle, #1c4d3c, #102d23); box-shadow: 0 0 15px rgba(237,198,111,.3); transform: rotate(calc(0deg - var(--wheel-rotation, 0deg))); }
 .wheel-ring span { color: var(--gold-light); font-size: 31px; text-shadow: 0 1px 12px rgba(255,222,151,.32); }
 .wheel-caption { margin-top: 23px; color: #a79166; font: 8px var(--mono); letter-spacing: .22em; }
 .roulette-controls { min-width: 0; }
@@ -378,6 +378,66 @@ select { width: 100%; padding: 10px; color: var(--gold-light); border: 1px solid
 .roulette-wager .control-label { padding-top: 8px; }
 .spin-button { width: 100%; margin-top: 17px; min-height: 48px; }
 .roulette-message { min-height: 36px; margin: 13px 0 0; color: var(--gold-light); font: 11px var(--mono); line-height: 1.6; text-align: center; }
+
+.wallet-actions { display: flex; align-items: center; justify-self: end; gap: 10px; }
+.buy-chips-link { padding: 8px 10px; color: var(--gold-light); border: 1px solid rgba(237,198,111,.38); background: rgba(237,198,111,.055); font: 8px var(--mono); letter-spacing: .08em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: background .2s, border-color .2s; }
+.buy-chips-link:hover { border-color: var(--gold); background: rgba(237,198,111,.12); }
+.game-topbar .wallet-actions { grid-column: 3; }
+.lobby-header .wallet-actions { gap: 8px; }
+.player-hands { min-width: 0; }
+.player-hands.split-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.player-hands .hand { min-width: 0; padding: 3px; border: 1px solid transparent; border-radius: 3px; }
+.player-hands .active-hand { border-color: rgba(255,231,165,.62); background: rgba(255,231,165,.065); box-shadow: 0 0 17px rgba(237,198,111,.09); }
+.split-layout .hand-title { font-size: 11px; }
+.split-layout .cards { gap: 4px; }
+.split-layout .card { width: 39px; height: 58px; padding: 5px; }
+.split-layout .card-rank { font-size: 13px; }
+.split-layout .card-suit { margin-top: -8px; font-size: 18px; }
+.split-layout .hand-total { font-size: 9px; }
+
+/* Simulated chip-counter checkout */
+.checkout-main { width: min(760px, calc(100% - 40px)); }
+.checkout-card { overflow: hidden; border: 1px solid rgba(237,198,111,.44); background: linear-gradient(145deg, rgba(237,198,111,.045), transparent 46%), #181510; box-shadow: inset 0 0 0 5px #100d0a, inset 0 0 0 6px rgba(237,198,111,.1), 0 17px 45px rgba(0,0,0,.28); }
+.checkout-security { min-height: 66px; display: flex; align-items: center; gap: 13px; padding: 13px clamp(17px, 4vw, 31px); border-bottom: 1px solid rgba(237,198,111,.19); background: rgba(0,0,0,.15); }
+.security-seal { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid rgba(237,198,111,.45); border-radius: 50%; color: var(--gold); font-size: 16px; }
+.checkout-security strong, .checkout-security small { display: block; }
+.checkout-security strong { color: var(--gold-light); font: 9px var(--mono); letter-spacing: .1em; }
+.checkout-security small { margin-top: 4px; color: #928369; font: 7px var(--mono); letter-spacing: .09em; }
+.lock-mark { margin-left: auto; color: #88a984; font-size: 20px; }
+.checkout-content { padding: 25px clamp(17px, 4vw, 31px) 22px; }
+.checkout-step { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: #d3c4a9; font: 9px var(--mono); letter-spacing: .13em; }
+.checkout-step > span { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid rgba(237,198,111,.4); border-radius: 50%; color: var(--gold-light); font-size: 9px; }
+.bundle-list { display: grid; gap: 9px; margin-bottom: 21px; }
+.bundle { position: relative; min-height: 71px; display: grid; grid-template-columns: 16px minmax(110px, 1fr) auto auto; align-items: center; gap: 11px; padding: 12px 14px; overflow: hidden; border: 1px solid rgba(237,198,111,.21); border-radius: 2px; background: rgba(255,255,255,.018); cursor: pointer; text-align: left; transition: background .18s, border-color .18s; }
+.bundle:hover { border-color: rgba(237,198,111,.56); background: rgba(237,198,111,.04); }
+.bundle.selected { border-color: var(--gold); background: rgba(237,198,111,.075); box-shadow: inset 3px 0 var(--gold); }
+.bundle-radio { width: 13px; height: 13px; border: 1px solid #8f8065; border-radius: 50%; }
+.bundle.selected .bundle-radio { border: 4px solid var(--gold-light); background: #342618; }
+.bundle-copy strong, .bundle-copy small, .bundle-amount small, .bundle-price small { display: block; }
+.bundle-copy strong { color: #f0e4cc; font: 12px var(--serif); }
+.bundle-copy small { margin-top: 4px; color: #9d9078; font: 8px var(--mono); }
+.bundle-amount { color: var(--gold-light); font: 13px var(--mono); text-align: right; white-space: nowrap; }
+.bundle-amount small { margin-top: 3px; color: #a6926a; font-size: 7px; letter-spacing: .12em; }
+.bundle-price { min-width: 84px; padding-left: 12px; border-left: 1px solid rgba(237,198,111,.15); color: #eee1c8; font: 11px var(--mono); text-align: right; white-space: nowrap; }
+.bundle-price small { margin-top: 4px; color: #958469; font-size: 7px; letter-spacing: .1em; }
+.bundle-ribbon { position: absolute; top: 0; right: 0; padding: 4px 8px 4px 10px; background: rgba(237,198,111,.17); color: var(--gold-light); font: 7px var(--mono); letter-spacing: .1em; }
+.order-summary { min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 12px 0; padding: 12px 13px; border: 1px solid rgba(237,198,111,.17); background: rgba(0,0,0,.17); color: #c2b49b; font: 9px var(--mono); }
+.order-summary strong { color: var(--gold-light); font-weight: 400; text-align: right; }
+.demo-consent { display: flex; align-items: flex-start; gap: 9px; margin: 17px 0; color: #aa9c85; font: 9px var(--mono); line-height: 1.65; cursor: pointer; }
+.demo-consent input { width: 14px; height: 14px; flex: 0 0 auto; margin: 1px 0 0; accent-color: #d2ad5e; }
+.place-order { width: 100%; min-height: 45px; }
+.checkout-disclosure { display: flex; align-items: flex-start; gap: 9px; margin: 15px 0 0; color: #887c68; font: 8px var(--mono); line-height: 1.7; }
+.checkout-disclosure span { color: var(--gold); }
+.purchase-result, .checkout-processing { padding: 39px 26px 35px; text-align: center; }
+.success-seal { width: 55px; height: 55px; display: grid; place-items: center; margin: 0 auto 20px; border: 1px solid #8fb58c; border-radius: 50%; color: #a7d2a0; font-size: 25px; box-shadow: 0 0 21px rgba(143,181,140,.12); }
+.purchase-result h2, .checkout-processing h2 { margin: 0; color: var(--gold-light); font-size: 30px; font-weight: 500; }
+.purchase-result > p:not(.section-kicker), .checkout-processing > p:last-child { color: #ae9f86; font-size: 12px; line-height: 1.65; }
+.receipt { max-width: 420px; display: grid; gap: 10px; margin: 24px auto; padding: 16px; border: 1px dashed rgba(237,198,111,.27); background: rgba(0,0,0,.15); text-align: left; }
+.receipt span { display: flex; justify-content: space-between; gap: 10px; color: #96876f; font: 8px var(--mono); letter-spacing: .06em; }
+.receipt strong { color: #dfd1b7; font-weight: 400; text-align: right; }
+.return-to-casino { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.processing-spinner { width: 44px; height: 44px; display: block; margin: 0 auto 22px; border: 2px solid rgba(237,198,111,.2); border-top-color: var(--gold-light); border-radius: 50%; animation: lantern-spin .8s linear infinite; }
+@keyframes lantern-spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 760px) {
   .game-doors { gap: 10px; }
@@ -433,6 +493,34 @@ select { width: 100%; padding: 10px; color: var(--gold-light); border: 1px solid
   .scratch-ticket { height: 160px; }
   .prize-list { flex-direction: column; gap: 8px; }
   .wheel { width: min(68vw, 245px); }
+  .lobby-header .wordmark { font-size: 13px; }
+  .lobby-header .wallet-actions { gap: 5px; }
+  .lobby-header .balance-plaque { gap: 4px; padding: 5px; }
+  .lobby-header .plaque-label { display: none; }
+  .lobby-header .balance { font-size: 10px; }
+  .lobby-header .buy-chips-link { padding: 7px 6px; font-size: 7px; letter-spacing: .04em; }
+  .game-topbar .wallet-actions { gap: 4px; }
+  .game-topbar .buy-chips-link { padding: 7px 5px; font-size: 7px; letter-spacing: .025em; }
+  .game-topbar .balance-plaque { padding: 5px; }
+  .game-topbar .balance { font-size: 10px; }
+  .game-topbar .plaque-label { font-size: 6px; }
+  .split-layout .card { width: 34px; height: 51px; padding: 4px; }
+  .split-layout .card-rank { font-size: 12px; }
+  .split-layout .card-suit { font-size: 16px; }
+  .split-layout .hand-title { font-size: 9px; }
+  .checkout-main { width: calc(100% - 26px); }
+  .checkout-content { padding: 19px 13px; }
+  .bundle { grid-template-columns: 14px minmax(85px, 1fr) auto auto; gap: 7px; padding: 10px 8px; }
+  .bundle-copy strong { font-size: 11px; }
+  .bundle-copy small { font-size: 7px; }
+  .bundle-amount { font-size: 10px; }
+  .bundle-price { min-width: 65px; padding-left: 7px; font-size: 9px; }
+  .bundle-ribbon { font-size: 6px; }
+  .checkout-security { padding: 12px; }
+  .checkout-security strong { font-size: 8px; }
+  .checkout-security small { font-size: 6px; }
+  .purchase-result, .checkout-processing { padding: 31px 15px; }
+  .receipt span { font-size: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
